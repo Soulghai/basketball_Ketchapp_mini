@@ -48,7 +48,7 @@ public class MyNativeShare : MonoBehaviour {
 		shareLink = "http://itunes.apple.com/app/id1192223024";
 		#endif
 
-		string _shareText = "Wow! I Just Scored ["+DefsGame.gameBestScore.ToString()+ "] in #YummMonsters! Can You Beat Me? @tabtale " + shareLink;
+		string _shareText = "Wow! I Just Scored ["+DefsGame.gameBestScore.ToString()+ "] in #Basketball! Can You Beat Me? " + shareLink;
 		ShareScreenshotWithText (_shareText, "");
 	}
 

@@ -92,7 +92,7 @@ public class RingManager : MonoBehaviour {
         NextRing = null;
 	    Vector3 newPoint = ChooseNextPoint ();
         CreateFirstRing (new Vector3(-newPoint.x*0.5f, -2.5f, 1f));
-        CreateNewRing (new Vector3(newPoint.x*0.5f, -2.0f, 1f));
+        CreateNewRing (new Vector3(newPoint.x*0.5f, -1.0f, 1f));
     }
 
     private void MoveToStartPosition()
@@ -102,7 +102,7 @@ public class RingManager : MonoBehaviour {
         Tweener t = _prevRing.transform.DOMove (new Vector3 (-newPoint.x*0.5f, -2.5f, 1f), 0.5f);
         t.SetEase (Ease.InCubic);
 
-        t = NextRing.transform.DOMove (new Vector3 (newPoint.x*0.5f, -2.0f, 1f), 0.5f);
+        t = NextRing.transform.DOMove (new Vector3 (newPoint.x*0.5f, -1.0f, 1f), 0.5f);
         t.SetEase (Ease.InCubic);
         WaitMoveToStartPosition = true;
         t.OnComplete (() => {

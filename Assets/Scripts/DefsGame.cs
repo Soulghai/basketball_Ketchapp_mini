@@ -25,8 +25,8 @@ public struct DefsGame {
 	public static readonly int[] facePrice = new int[] { 50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600 };
 	public static int BTN_GIFT_HIDE_DELAY 			= 0;
 	public static int BTN_GIFT_HIDE_DELAY_COUNTER	= 0;
-	public static readonly int[] BTN_GIFT_HIDE_DELAY_ARR = new int[] {1, 2, 5, 10, 15, 20, 25, 30, 60};
-	//public static readonly int[] BTN_GIFT_HIDE_DELAY_ARR = new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0};
+//	public static readonly int[] BTN_GIFT_HIDE_DELAY_ARR = new int[] {1, 2, 5, 10, 15, 20, 25, 30, 60};
+	public static readonly int[] BTN_GIFT_HIDE_DELAY_ARR = new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0};
 
 
 

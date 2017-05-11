@@ -407,7 +407,7 @@ public class Ball : MonoBehaviour
         _body.isKinematic = false;
 
         Vector2 force = CalcForce(dist.x, dist.y);
-        _body.AddForce(new Vector2(force.x * 74.4f, force.y * 74.4f)); //49.45
+        _body.AddForce(new Vector2(force.x * 87.2f, force.y * 87.2f)); //74.4
         _body.AddTorque(1);
         _isThrow = true;
 
