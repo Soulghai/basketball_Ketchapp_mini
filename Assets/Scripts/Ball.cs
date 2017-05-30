@@ -75,7 +75,7 @@ public class Ball : MonoBehaviour
 
         _body = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        LoadSprites (DefsGame.currentFaceID);
+        // LoadSprites (DefsGame.currentFaceID);
         _targetLinePointCount = _targetLinePoints.Length - TargetHintPartCountMax;
 
         _startScale = transform.localScale;
