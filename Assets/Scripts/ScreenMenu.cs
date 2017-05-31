@@ -17,7 +17,6 @@ public class ScreenMenu : MonoBehaviour {
     private bool _isShowBtnViveoAds = true;
     private bool _isButtonHiden;
 
-
 	// Use this for initialization
 	void Start () {
 		//Grab the old time from the player prefs as a long
@@ -54,17 +53,6 @@ public class ScreenMenu : MonoBehaviour {
 		showButtons ();
 	}
 
-	void Awake() 
-	{
-		Invoke("InitialRvButtonUpdate", 0.5f);
-		//PublishingService.Instance.OnRewardedVideoReadyChanged += IsVideoAdsAvailable;
-	}
-
-	void OnDestroy() {
-		
-		//PublishingService.Instance.OnRewardedVideoReadyChanged -= IsVideoAdsAvailable;
-	}
-
 	void OnEnable()
 	{
 		ScreenGame.OnShowMenu += ScreenGame_OnShowMenu;
@@ -84,11 +72,6 @@ public class ScreenMenu : MonoBehaviour {
 
 	void Ball_OnThrow() {
 		hideButtons ();
-	}
-
-	void InitialRvButtonUpdate()
-	{
-		//IsVideoAdsAvailable(PublishingService.Instance.IsRewardedVideoReady());
 	}
 
 	void IsVideoAdsAvailable(bool _flag) {

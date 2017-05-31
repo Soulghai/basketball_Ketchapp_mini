@@ -3,6 +3,7 @@
 public struct DefsGame {
 
 	public static int noAds = 0;
+	public static int gameSessionCointer = 0;
 	public static BillingManager IAPs;
 	public static GameServicesManager gameServices;
     public static ScreenGame ScreenGame;
@@ -68,10 +69,14 @@ public struct DefsGame {
 	static public int rateCounter 								= 0;
     public static Coins Coins { get; set; }
     public static CoinSensor CoinSensor { get; set; }
-    public static bool IsNeedToShowCoin = false;
+	public static MyHeyzap MyHeyzap { get; set; }
+
+	public static bool IsNeedToShowCoin = false;
 
     static public void LoadVariables() {
 		noAds = PlayerPrefs.GetInt ("noAds", 0);
+		gameSessionCointer = PlayerPrefs.GetInt ("gameSessionCointer", 0);
+	    ++gameSessionCointer;
 		currentFaceID = PlayerPrefs.GetInt ("currentFaceID", 0);
 		//currentFaceID = 0;
 		gameBestScore = PlayerPrefs.GetInt ("BestScore", 0);
