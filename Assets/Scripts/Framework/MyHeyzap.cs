@@ -3,14 +3,16 @@ using UnityEngine;
 using Heyzap;
 
 public class MyHeyzap : MonoBehaviour {
+	public static event Action <bool> OnGiveReward;
+	public static event Action <bool> OnVideoAdsAvailable;
 	public static event Action GiveReward;
 	[HideInInspector] public bool IsRewardedVideoReady;
 	[HideInInspector] public int VideoAdCointer;
 	private bool _firstInterstitialShowed;
+	public long _counter { get; set; }
 	// Use this for initialization
 	void Start ()
 	{
-		DefsGame.MyHeyzap = this;
 		IsRewardedVideoReady = false;
 		VideoAdCointer = 0;
 		HeyzapAds.Start("70d6db5109295d28b9ab83165d3fa95c", HeyzapAds.FLAG_NO_OPTIONS);
@@ -55,14 +57,39 @@ public class MyHeyzap : MonoBehaviour {
  
 		HZVideoAd.SetDisplayListener(listenerVideo);
 	}
+	
+	private void OnEnable() {
+		ScreenGame.ShowVideoAds += ShowVideo;
+		ScreenGame.ShowRewardedAds += ShowRewarded;
+		ScreenMenu.ShowRewardedAds += ShowRewarded;
+		ScreenCoins.ShowRewardedAds += ShowRewarded;
+	}
 
-	public void ShowStartInterstitial()
+	private void OnDisable() {
+		ScreenGame.ShowVideoAds -= ShowVideo;
+		ScreenGame.ShowRewardedAds -= ShowRewarded;
+		ScreenMenu.ShowRewardedAds -= ShowRewarded;
+		ScreenCoins.ShowRewardedAds -= ShowRewarded;
+	}
+
+	public void ShowInterstitial()
 	{
-		if (HZInterstitialAd.IsAvailable("app-launch"))
+		++_counter;
+		if (_counter >= Umbrella.ServerSettings.Manager.Get<Int64>("interstitialFrequency", 5))
 		{
-			HZShowOptions showOptions = new HZShowOptions();
-			showOptions.Tag = "app-launch";
-			HZInterstitialAd.ShowWithOptions(showOptions);
+			// show ad
+			_counter = 0;
+		}
+		else
+		{
+			return;
+		}
+		if (HZInterstitialAd.IsAvailable(/*"app-launch"*/))
+		{
+//			HZShowOptions showOptions = new HZShowOptions();
+//			showOptions.Tag = "app-launch";
+//			HZInterstitialAd.ShowWithOptions(showOptions);
+			HZInterstitialAd.Show();
 
 			_firstInterstitialShowed = true;
 		}
@@ -75,7 +102,7 @@ public class MyHeyzap : MonoBehaviour {
 			HZShowOptions showOptions = new HZShowOptions();
 			showOptions.Tag = "video";
 			HZVideoAd.ShowWithOptions(showOptions);
-			DefsGame.MyHeyzap.VideoAdCointer = 0;
+			VideoAdCointer = 0;
 			Defs.MuteSounds (true);
 		}
 	}
@@ -89,15 +116,15 @@ public class MyHeyzap : MonoBehaviour {
 			HZIncentivizedAd.ShowWithOptions(showOptions);
 			
 			Defs.MuteSounds (true);
-			DefsGame.MyHeyzap.VideoAdCointer = 0;
+			VideoAdCointer = 0;
 		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (!_firstInterstitialShowed)
-		{
-			ShowStartInterstitial();
-		}
+//		if (!_firstInterstitialShowed)
+//		{
+//			ShowStartInterstitial();
+//		}
 	}
 }

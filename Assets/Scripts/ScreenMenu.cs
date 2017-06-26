@@ -4,6 +4,7 @@ using DoozyUI;
 using System;
 
 public class ScreenMenu : MonoBehaviour {
+	public static event Action ShowRewardedAds;
 	//public static event Action<int> OnAddCoins;
 	public GameObject coin;
 	public Text timeText;

@@ -4,6 +4,8 @@ using Random = UnityEngine.Random;
 using DoozyUI;
 
 public class ScreenGame : MonoBehaviour {
+	public static event Action ShowVideoAds;
+	public static event Action ShowRewardedAds;
 	public GameObject ScreenAnimationObject;
 
     private ScreenColorAnimation _screenAnimation;

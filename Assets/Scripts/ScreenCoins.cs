@@ -4,7 +4,7 @@ using DoozyUI;
 
 public class ScreenCoins : MonoBehaviour {
 	public static event Action<int> OnAddCoinsVisual;
-
+	public static event Action ShowRewardedAds;
 	private bool _isShowBtnViveoAds = true;
 	// Use this for initialization
 

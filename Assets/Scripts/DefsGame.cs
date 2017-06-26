@@ -69,7 +69,6 @@ public struct DefsGame {
 	static public int rateCounter 								= 0;
     public static Coins Coins { get; set; }
     public static CoinSensor CoinSensor { get; set; }
-	public static MyHeyzap MyHeyzap { get; set; }
 
 	public static bool IsNeedToShowCoin = false;
 
