@@ -1,20 +1,20 @@
 ﻿using UnityEngine;
-//using VoxelBusters.NativePlugins;
-//using VoxelBusters.Utility;
+using VoxelBusters.NativePlugins;
+using VoxelBusters.Utility;
 
 public class Share : MonoBehaviour {
 
-	/*void Start() {
-		Defs.shareVoxel = this;
+	void Start() {
+		Defs.ShareVoxel = this;
 	}
 
 	public void ShareClick ()
 	{
-		string _shareLink = "https://play.google.com/store/apps/details?id=com.crazylabs.monsteryumm";
+		string _shareLink = "http://www.umbrella.wtf/Ballstar";
 
 		#if UNITY_IOS
 
-		_shareLink = "http://itunes.apple.com/app/id1192223024";
+		_shareLink = "http://www.umbrella.wtf/Ballstar";
 		#endif
 
 		string _shareText = "Wow! I Just Scored ["+DefsGame.gameBestScore.ToString()+ "] in #YummMonsters! Can You Beat Me? @tabtale " + _shareLink;
@@ -47,5 +47,5 @@ public class Share : MonoBehaviour {
 		Debug.Log("Share Result = " + _result);
 	}
 
-	*/
+	
 }

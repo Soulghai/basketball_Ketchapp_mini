@@ -145,8 +145,8 @@ public class Chain : MonoBehaviour
     //RESET если сброс настроек, то заново надо найти теповые концы и удалить звенья. Все массивы отчищаются автоматическыи.
     void Reset()
     {
-        Transform findTempA = transform.FindChild("tempA");
-        Transform findTempB = transform.FindChild("tempB");
+        Transform findTempA = transform.Find("tempA");
+        Transform findTempB = transform.Find("tempB");
         if (findTempA != null)
         {
             _tempA = findTempA.gameObject;

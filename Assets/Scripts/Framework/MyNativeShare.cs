@@ -42,10 +42,10 @@ public class MyNativeShare : MonoBehaviour {
 		D.Log ("NativeShare.ShareClick()");
 
 
-		string shareLink = "https://play.google.com/store/apps/details?id=com.crazylabs.monsteryumm";
+		string shareLink = "http://www.umbrella.wtf/Ballstar";
 
 		#if UNITY_IOS
-		shareLink = "http://itunes.apple.com/app/id1192223024";
+		shareLink = "http://www.umbrella.wtf/Ballstar";
 		#endif
 
 		string _shareText = "Wow! I Just Scored ["+DefsGame.gameBestScore.ToString()+ "] in #Basketball! Can You Beat Me? " + shareLink;
