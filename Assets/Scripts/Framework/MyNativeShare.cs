@@ -48,7 +48,7 @@ public class MyNativeShare : MonoBehaviour {
 		shareLink = "http://www.umbrella.wtf/Ballstar";
 		#endif
 
-		string _shareText = "Wow! I Just Scored ["+DefsGame.gameBestScore.ToString()+ "] in #Basketball! Can You Beat Me? " + shareLink;
+		string _shareText = "Wow! I Just Scored ["+DefsGame.GameBestScore.ToString()+ "] in #Basketball! Can You Beat Me? " + shareLink;
 		ShareScreenshotWithText (_shareText, "");
 	}
 

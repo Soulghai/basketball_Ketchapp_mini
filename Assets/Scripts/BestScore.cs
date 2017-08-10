@@ -22,7 +22,7 @@ public class BestScore : MonoBehaviour {
 		textField.color = color;
 		img.color = new Color(img.color.r, img.color.g, img.color.b, color.a);
 		_startScale = img.transform.localScale.x;
-		_pointsCount = DefsGame.gameBestScore;
+		_pointsCount = DefsGame.GameBestScore;
 		textField.text = _pointsCount.ToString ();
 	    _sndNewHighScore = Resources.Load<AudioClip>("snd/fanfares");
 	}
@@ -78,7 +78,7 @@ public class BestScore : MonoBehaviour {
 	}
 
 	void MakeAnimation() {
-		_pointsCount = DefsGame.gameBestScore;
+		_pointsCount = DefsGame.GameBestScore;
 		textField.text = _pointsCount.ToString ();
 		img.transform.localScale = new Vector3 (_startScale * 1.4f, _startScale * 1.4f, 1f);
 		Defs.PlaySound(_sndNewHighScore);
@@ -87,7 +87,7 @@ public class BestScore : MonoBehaviour {
 
 	public void UpdateVisual() {
 		// Здесь только визуальная обработка. Изменение BestScore в Points
-		if (DefsGame.gameBestScore > _pointsCount) {
+		if (DefsGame.GameBestScore > _pointsCount) {
 			_isPointAdded = true;
 		}
 	}

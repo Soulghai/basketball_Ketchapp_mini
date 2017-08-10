@@ -59,6 +59,7 @@ public class Ball : MonoBehaviour
     private bool _isWeb;
     private int _hintCounter;
     private bool _isGoalTrigger2;
+    private bool _isGameplay;
 
     // Use this for initialization
     void Start()
@@ -89,14 +90,28 @@ public class Ball : MonoBehaviour
         _hintCounter = 0;
 
         _targetLosePosition = _mouseStartPosition;
-        SetNewSkin(DefsGame.currentFaceID);
+        SetNewSkin(DefsGame.CurrentFaceId);
 
         ParticleTrail.Stop();
         _isThrow = false;
+        _isGameplay = true;
+    }
+    
+    private void OnEnable() {
+        GlobalEvents<OnStartGame>.Happened += OnStartGame;
+    }
+
+    private void OnDisable() {
+        GlobalEvents<OnStartGame>.Happened -= OnStartGame;
+    }
+
+    private void OnStartGame(OnStartGame obj)
+    {
+        _isGameplay = true;
     }
 
     public void SetNewSkin(int id) {
-        LoadSprites (DefsGame.currentFaceID);
+        LoadSprites (DefsGame.CurrentFaceId);
         _spriteRenderer.sprite = _sprite;
     }
 
@@ -107,13 +122,13 @@ public class Ball : MonoBehaviour
 
     public void Respown(Vector3 position)
     {
-        if (_isLose && DefsGame.currentPointsCount == 0) _mouseTarget = _targetLosePosition;
+        if (_isLose && DefsGame.CurrentPointsCount == 0) _mouseTarget = _targetLosePosition;
         else
             _mouseTarget = _mouseStartPosition;
 
         if (_isLose)
         {
-            if (DefsGame.currentPointsCount < 3)
+            if (DefsGame.CurrentPointsCount < 3)
             {
                 ++_hintCounter;
             }
@@ -167,6 +182,8 @@ public class Ball : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!_isGameplay) return;
+        
         if ((_oldVelocityY > 0f) && (_body.velocity.y <= 0f))
         {
             D.Log("Gothca");
@@ -176,7 +193,7 @@ public class Ball : MonoBehaviour
 
         if (!_isThrow)
         {
-            if ((!_isSetStartPoint)&&((DefsGame.currentScreen == DefsGame.SCREEN_GAME)||(DefsGame.currentScreen == DefsGame.SCREEN_MENU)))
+            if ((!_isSetStartPoint)&&((DefsGame.CurrentScreen == DefsGame.SCREEN_GAME)||(DefsGame.CurrentScreen == DefsGame.SCREEN_MENU)))
                 SetStartPoint();
 
             if (_isDrawTargetLine) DrawTargetLine();
@@ -251,6 +268,7 @@ public class Ball : MonoBehaviour
                     _body.isKinematic = true;
                     _lifeTime = -10000f;
                     GameEvents.Send(OnMiss, 0.1f);
+                    _isGameplay = false;
                 }
             }
             else

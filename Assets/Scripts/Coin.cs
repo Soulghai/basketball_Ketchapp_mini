@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 public class Coin : MonoBehaviour {
 	public static event Action<int> OnAddCoinsVisual;
 
-	[HideInInspector] public GameObject parentObj;
+	[HideInInspector] public GameObject ParentObj;
     private Vector3 _targetPos;
     private float _velocity;
     private float _moveAngle;
@@ -16,11 +16,6 @@ public class Coin : MonoBehaviour {
     private bool _isMoveToTarget = false;
     private const float VelocityMax = 0.2f;
     private float _showTime = 0f;
-
-	// Use this for initialization
-	void Start () {
-		
-	}
 
 	public void Show(bool isAnimation) {
 		_isShowAnimation = isAnimation;
@@ -41,7 +36,7 @@ public class Coin : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (!_isMoveToTarget) {
-			if (parentObj) transform.position = parentObj.transform.position;
+			if (ParentObj) transform.position = ParentObj.transform.position;
 		}
 
 		if (_isShowAnimation)

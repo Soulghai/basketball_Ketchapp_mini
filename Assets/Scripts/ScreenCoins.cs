@@ -55,7 +55,7 @@ public class ScreenCoins : MonoBehaviour {
 	private void IsVideoAdsAvailable(bool flag) {
 		_isShowBtnViveoAds = flag;
 		if (flag) {
-			if (DefsGame.currentScreen == DefsGame.SCREEN_IAPS) {
+			if (DefsGame.CurrentScreen == DefsGame.SCREEN_IAPS) {
 				UIManager.ShowUiElement ("ScreenCoinsBtnVideo");
 				FlurryEventsManager.SendEvent ("RV_strawberries_impression", "shop");
 			}
@@ -107,7 +107,7 @@ public class ScreenCoins : MonoBehaviour {
 		FlurryEventsManager.SendStartEvent ("iap_shop_length");
 		FlurryEventsManager.SendEvent ("iap_shop", PrevScreenName);
 
-		DefsGame.currentScreen = DefsGame.SCREEN_IAPS;
+		DefsGame.CurrentScreen = DefsGame.SCREEN_IAPS;
 		DefsGame.isCanPlay = false;
 		ShowButtons ();
 	}
@@ -115,7 +115,7 @@ public class ScreenCoins : MonoBehaviour {
 	public void Hide() {
 		FlurryEventsManager.SendEndEvent ("iap_shop_length");
 
-		DefsGame.currentScreen = DefsGame.SCREEN_MENU;
+		DefsGame.CurrentScreen = DefsGame.SCREEN_MENU;
 		DefsGame.isCanPlay = true;
 		HideButtons ();
 

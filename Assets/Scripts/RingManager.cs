@@ -77,7 +77,7 @@ public class RingManager : MonoBehaviour {
 
     public void Miss()
     {
-        if (DefsGame.currentPointsCount != 0) MoveToStartPosition();
+        if (DefsGame.CurrentPointsCount != 0) MoveToStartPosition();
         else
         {
             RespownBall();
@@ -163,12 +163,12 @@ public class RingManager : MonoBehaviour {
     private Vector3 ChooseNextPoint() {
         float posX;
 
-        if ((DefsGame.ScreenGame.IsGameOver)||(DefsGame.currentPointsCount < 5)) posX = Random.Range(5f, 6.5f); else
-        if (DefsGame.currentPointsCount < 10) posX = Random.Range(5.5f, 7.5f); else
-        if (DefsGame.currentPointsCount < 20) posX = Random.Range(6.0f, 8.5f); else
-        if (DefsGame.currentPointsCount < 30) posX = Random.Range(6.5f, 9.5f); else
-        if (DefsGame.currentPointsCount < 40) posX = Random.Range(7f, 10.5f); else
-        if (DefsGame.currentPointsCount < 50) posX = Random.Range(7.5f, 11.5f);
+        if ((DefsGame.ScreenGame.IsGameOver)||(DefsGame.CurrentPointsCount < 5)) posX = Random.Range(5f, 6.5f); else
+        if (DefsGame.CurrentPointsCount < 10) posX = Random.Range(5.5f, 7.5f); else
+        if (DefsGame.CurrentPointsCount < 20) posX = Random.Range(6.0f, 8.5f); else
+        if (DefsGame.CurrentPointsCount < 30) posX = Random.Range(6.5f, 9.5f); else
+        if (DefsGame.CurrentPointsCount < 40) posX = Random.Range(7f, 10.5f); else
+        if (DefsGame.CurrentPointsCount < 50) posX = Random.Range(7.5f, 11.5f);
         else
             posX = Random.Range(8f, 12.4f);
 		 

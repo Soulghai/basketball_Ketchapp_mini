@@ -15,8 +15,8 @@ public class Coins : MonoBehaviour {
 	{
 	    DefsGame.Coins = this;
 		_sndCoin = Resources.Load<AudioClip>("snd/bonus");
-		textField.text = DefsGame.coinsCount.ToString();
-		_pointsCount = DefsGame.coinsCount;
+		textField.text = DefsGame.CoinsCount.ToString();
+		_pointsCount = DefsGame.CoinsCount;
 		Color color = textField.color;
 		color.a = 0f;
 		textField.color = color;
@@ -80,8 +80,8 @@ public class Coins : MonoBehaviour {
 	public void AddPoint(int count)
 	{
 		_pointsCount += count;
-		DefsGame.coinsCount += count;
-		PlayerPrefs.SetInt ("coinsCount", DefsGame.coinsCount);
+		DefsGame.CoinsCount += count;
+		PlayerPrefs.SetInt ("coinsCount", DefsGame.CoinsCount);
 	}
 
 	void AddPointVisual(int value)

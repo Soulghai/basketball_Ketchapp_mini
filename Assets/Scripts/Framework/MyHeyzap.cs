@@ -16,7 +16,7 @@ public class MyHeyzap : MonoBehaviour {
 		IsRewardedVideoReady = false;
 		VideoAdCointer = 0;
 		HeyzapAds.Start("70d6db5109295d28b9ab83165d3fa95c", HeyzapAds.FLAG_NO_OPTIONS);
-		HeyzapAds.ShowMediationTestSuite();
+//		HeyzapAds.ShowMediationTestSuite();
 		
 		// Interstitial ads are automatically fetched
 		HZInterstitialAd.Fetch("app-launch");
@@ -63,6 +63,8 @@ public class MyHeyzap : MonoBehaviour {
 		ScreenGame.ShowRewardedAds += ShowRewarded;
 		ScreenMenu.ShowRewardedAds += ShowRewarded;
 		ScreenCoins.ShowRewardedAds += ShowRewarded;
+		ScreenMenu.ShowBannerAds += ShowBanner;
+		ScreenMenu.HideBannerAds += HideBanner;
 	}
 
 	private void OnDisable() {
@@ -70,9 +72,12 @@ public class MyHeyzap : MonoBehaviour {
 		ScreenGame.ShowRewardedAds -= ShowRewarded;
 		ScreenMenu.ShowRewardedAds -= ShowRewarded;
 		ScreenCoins.ShowRewardedAds -= ShowRewarded;
+		
+		ScreenMenu.ShowBannerAds -= ShowBanner;
+		ScreenMenu.HideBannerAds -= HideBanner;
 	}
 
-	public void ShowInterstitial()
+	private void ShowInterstitial()
 	{
 		++_counter;
 		if (_counter >= Umbrella.ServerSettings.Manager.Get<Int64>("interstitialFrequency", 5))
@@ -95,7 +100,7 @@ public class MyHeyzap : MonoBehaviour {
 		}
 	}
 
-	public void ShowVideo()
+	private void ShowVideo()
 	{
 		// Later, such as after a level is completed
 		if (HZVideoAd.IsAvailable("video")) {
@@ -107,7 +112,7 @@ public class MyHeyzap : MonoBehaviour {
 		}
 	}
 	
-	public void ShowRewarded()
+	private void ShowRewarded()
 	{
 		// Later, such as after a level is completed
 		if (HZIncentivizedAd.IsAvailable("rewarded")) {
@@ -118,6 +123,18 @@ public class MyHeyzap : MonoBehaviour {
 			Defs.MuteSounds (true);
 			VideoAdCointer = 0;
 		}
+	}
+
+	private void ShowBanner()
+	{
+		HZBannerShowOptions showOptions = new HZBannerShowOptions();
+		showOptions.Position = HZBannerShowOptions.POSITION_BOTTOM;
+		HZBannerAd.ShowWithOptions(showOptions);
+	}
+
+	private void HideBanner()
+	{
+		
 	}
 	
 	// Update is called once per frame

@@ -77,14 +77,14 @@ public class ScreenGame : MonoBehaviour {
 	}
 
 	private void Init() {
-		DefsGame.gameServices.ReportProgressWithGlobalID (DefsGame.gameServices.ACHIEVEMENT_FIRST_WIN, DefsGame.gameBestScore);
+		DefsGame.gameServices.ReportProgressWithGlobalID (DefsGame.gameServices.ACHIEVEMENT_FIRST_WIN, DefsGame.GameBestScore);
 
 		++DefsGame.QUEST_GAMEPLAY_Counter;
 		PlayerPrefs.SetInt ("QUEST_GAMEPLAY_Counter", DefsGame.QUEST_GAMEPLAY_Counter);
 
 		DefsGame.gameServices.ReportProgressWithGlobalID (DefsGame.gameServices.ACHIEVEMENT_MASTER, DefsGame.QUEST_GAMEPLAY_Counter);
 
-		++DefsGame.gameplayCounter;
+		++DefsGame.GameplayCounter;
 	
 		PlayerPrefs.SetInt ("QUEST_THROW_CounterCounter", DefsGame.QUEST_THROW_Counter);
 
@@ -137,6 +137,7 @@ public class ScreenGame : MonoBehaviour {
 			return;
 
 		Defs.PlaySound (_sndLose);
+		GlobalEvents<OnShowNotifications>.Call(new OnShowNotifications());
 
 		_missDelay = delay;
 		if (DefsGame.IS_ACHIEVEMENT_MISS_CLICK == 0) {
@@ -207,11 +208,11 @@ public class ScreenGame : MonoBehaviour {
 
 		++DefsGame.QUEST_THROW_Counter;
 
-		if (DefsGame.gameplayCounter == 1) {
+		if (DefsGame.GameplayCounter == 1) {
 			_points.ShowAnimation ();
 		}
 		if (_state == 1) {
-			DefsGame.currentScreen = DefsGame.SCREEN_GAME;
+			DefsGame.CurrentScreen = DefsGame.SCREEN_GAME;
 			_points.ResetCounter ();
 			UIManager.ShowUiElement ("scrMenuWowSlider");
 			_state = 2;
@@ -293,7 +294,7 @@ public class ScreenGame : MonoBehaviour {
                 DefsGame.gameServices.SubmitScore (DefsGame.gameBestScore);
                 PlayerPrefs.SetInt ("BestScore", DefsGame.gameBestScore);
             }*/
-	            PlayerPrefs.SetInt("coinsCount", DefsGame.coinsCount);
+	            PlayerPrefs.SetInt("coinsCount", DefsGame.CoinsCount);
 
 
 	            DefsGame.RingManager.Miss();
@@ -301,7 +302,7 @@ public class ScreenGame : MonoBehaviour {
 	            IsGameOver = false;
 	            NextBackground();
 	            GameEvents.Send(OnShowMenu);
-	            DefsGame.currentScreen = DefsGame.SCREEN_MENU;
+	            DefsGame.CurrentScreen = DefsGame.SCREEN_MENU;
 
 
 
@@ -489,14 +490,14 @@ public class ScreenGame : MonoBehaviour {
 
 		//if (Input.GetKeyDown (KeyCode.A))
 		if (InputController.IsEscapeClicked ())
-		if (DefsGame.currentScreen == DefsGame.SCREEN_EXIT) {
+		if (DefsGame.CurrentScreen == DefsGame.SCREEN_EXIT) {
 			HideExitPanel ();
 		}
 		else	
-		if (DefsGame.currentScreen == DefsGame.SCREEN_MENU) {
+		if (DefsGame.CurrentScreen == DefsGame.SCREEN_MENU) {
 			ShowExitPanel ();
 		}
-		else if (DefsGame.currentScreen == DefsGame.SCREEN_GAME) {
+		else if (DefsGame.CurrentScreen == DefsGame.SCREEN_GAME) {
 			if (_isScreenReviveDone)
 				ReviveClose ();
 			else if (_isScreenShareDone)
@@ -504,10 +505,10 @@ public class ScreenGame : MonoBehaviour {
 			else if (_isScreenRateDone)
 			RateClose (); else
 				GameOver ();
-		}else if (DefsGame.currentScreen == DefsGame.SCREEN_SKINS) {
+		}else if (DefsGame.CurrentScreen == DefsGame.SCREEN_SKINS) {
 			DefsGame.screenSkins.Hide ();
 			GameEvents.Send (OnShowMenu);
-		}else if (DefsGame.currentScreen == DefsGame.SCREEN_IAPS) {
+		}else if (DefsGame.CurrentScreen == DefsGame.SCREEN_IAPS) {
 			DefsGame.screenCoins.Hide ();
 			GameEvents.Send (OnShowMenu);
 		}
@@ -519,14 +520,14 @@ public class ScreenGame : MonoBehaviour {
 	}
 
 	public void HideExitPanel() {
-		DefsGame.currentScreen = DefsGame.SCREEN_MENU;
+		DefsGame.CurrentScreen = DefsGame.SCREEN_MENU;
 		UIManager.HideUiElement ("PanelExit");
 		UIManager.HideUiElement ("PanelExitBtnYes");
 		UIManager.HideUiElement ("PanelExitBtnNo");
 	}
 
 	private void ShowExitPanel() {
-		DefsGame.currentScreen = DefsGame.SCREEN_EXIT;
+		DefsGame.CurrentScreen = DefsGame.SCREEN_EXIT;
 		UIManager.ShowUiElement ("PanelExit");
 		UIManager.ShowUiElement ("PanelExitBtnYes");
 		UIManager.ShowUiElement ("PanelExitBtnNo");

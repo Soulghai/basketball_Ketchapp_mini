@@ -150,7 +150,7 @@ public class FlurryEventsManager : MonoBehaviour {
 	//---------------------------
 
 	static private int GetBalance() {
-		int _value = DefsGame.coinsCount;
+		int _value = DefsGame.CoinsCount;
 		_value -= _value % 5;
 		return Mathf.Clamp (_value, 0, 1495);
 	}
@@ -163,7 +163,7 @@ public class FlurryEventsManager : MonoBehaviour {
 	}
 
 	static private int GetScore() {
-		int _value = DefsGame.currentPointsCount;
+		int _value = DefsGame.CurrentPointsCount;
 		_value -= _value % 2;
 		return Mathf.Clamp (_value, 0, 600);
 	}
